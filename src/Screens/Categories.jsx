@@ -1,6 +1,5 @@
-import { useRef, useEffect, useState } from "react";
 import { StyleSheet, View, FlatList, Image } from "react-native";
-import { categories } from "../Data/categories.js";
+import { categories } from "../Data/categories.json";
 import CategorieCard from "../Components/CategorieCard.jsx";
 import url from "../../public/assets/home_background.jpg";
 import Footer from "../Components/Footer.jsx";
@@ -16,11 +15,7 @@ const Categories = ({ navigation }) => {
 					data={categories}
 					keyExtractor={item => item.id}
 					renderItem={({ item }) => (
-						<CategorieCard
-							key={item.id}
-							item={item}
-							onPress={() => navigation.navigate("Productos", { category: item.title })}
-						/>
+						<CategorieCard item={item} onPress={() => navigation.navigate("Productos", { category: item.title })} />
 					)}
 				/>
 			</View>

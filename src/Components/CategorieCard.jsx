@@ -14,7 +14,7 @@ const CategorieCard = ({ item, onPress }) => {
 
 	return (
 		<Pressable style={styles.card} onPress={() => onPress(item.title)}>
-			<Image source={item.img} style={styles.thumbnail} />
+			<Image source={{ uri: item.img }} style={styles.thumbnail} />
 			<View style={styles.overlay}>
 				<Text style={styles.title}>{setTitle()}</Text>
 			</View>

@@ -1,8 +1,9 @@
 import { View, Text, FlatList, StyleSheet, Image } from "react-native";
-import { products } from "../Data/products.js";
+import { products } from "../Data/products.json";
 import ProductCard from "../Components/ProductCard.jsx";
 import url from "../../public/assets/home_background.jpg";
 import { theme } from "../utils/theme.js";
+import Footer from "../Components/Footer.jsx";
 import { useState, useEffect } from "react";
 
 const Products = ({ navigation, route }) => {
@@ -22,22 +23,25 @@ const Products = ({ navigation, route }) => {
 	}, [category]);
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.backgroundContainer}>
-				<Image source={url} style={styles.backgroundImage} />
-			</View>
-			<Text style={styles.title}>Lista de productos de la categoría:</Text>
-			<View style={styles.categorieContainer}>
-				<View style={styles.borderContainer}>
-					<Text style={styles.focus}>{title}</Text>
+		<>
+			<View style={styles.container}>
+				<View style={styles.backgroundContainer}>
+					<Image source={url} style={styles.backgroundImage} />
 				</View>
+				<Text style={styles.title}>Lista de productos de la categoría:</Text>
+				<View style={styles.categorieContainer}>
+					<View style={styles.borderContainer}>
+						<Text style={styles.focus}>{title}</Text>
+					</View>
+				</View>
+				<FlatList
+					data={product}
+					keyExtractor={item => item.id}
+					renderItem={({ item }) => <ProductCard item={item} />}
+				/>
 			</View>
-			<FlatList
-				data={product}
-				keyExtractor={item => item.id}
-				renderItem={({ item }) => <ProductCard key={item.id} item={item} />}
-			/>
-		</View>
+			<Footer />
+		</>
 	);
 };
 

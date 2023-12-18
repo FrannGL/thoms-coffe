@@ -1,7 +1,23 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useState } from "react";
+import Popup from "./Popup";
 
 const ProductCard = ({ item }) => {
+	const [showPopup, setShowPopup] = useState(false);
+
+	const handlePress = () => {
+		setShowPopup(true);
+	};
+
+	const handleCancel = () => {
+		setShowPopup(false);
+	};
+
+	const handleAdd = item => {
+		console.log(`${item.title} agregado a la orden`);
+	};
+
 	return (
 		<View style={styles.productContainer}>
 			<View style={styles.productImage_container}>
@@ -12,9 +28,10 @@ const ProductCard = ({ item }) => {
 				<Text style={styles.productDescription}>{item.description}</Text>
 				<Text style={styles.productPrice}>$ {`${item.price}`}.-</Text>
 			</View>
-			<Pressable>
+			<Pressable onPress={handlePress}>
 				<MaterialIcons name='add-business' size={24} color='black' />
 			</Pressable>
+			<Popup item={item} isVisible={showPopup} onAdd={handleAdd} onCancel={handleCancel} />
 		</View>
 	);
 };
@@ -55,12 +72,12 @@ const styles = StyleSheet.create({
 	productDescription: {
 		fontSize: 16,
 		color: "#555",
-		marginTop: 5, // Margen superior para separación
+		marginTop: 5,
 	},
 	productPrice: {
 		fontSize: 16,
 		fontWeight: "bold",
 		color: "green",
-		marginTop: 5, // Margen superior para separación
+		marginTop: 5,
 	},
 });
