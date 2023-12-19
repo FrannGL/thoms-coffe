@@ -1,44 +1,44 @@
 {
-	"categories": [
-		{
-			"id": "7f7c82b0cf0143edab598fb4",
-			"title": "cafeteria",
-			"img": "https://viapais.com.ar/resizer/wFiWIC2i536aUNaMlAeM-9T1X8g=/800x450/smart/filters:quality(75):format(webp)/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/LTSI3MLN35FSPLWIM2RF2ZFOJU.jpg"
-		},
-		{
-			"id": "a9ce71f49b094a6a9c456825",
-			"title": "milkshakes",
-			"img": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipes%2F2020-07-how-to-make-a-milkshake-at-home%2F2020-06-08_AT-K19388"
-		},
-		{
-			"id": "6dfe3a10a22141c59e8b8e0a",
-			"title": "licuados",
-			"img": "https://i.pinimg.com/564x/2f/ef/65/2fef6593df12bc61f7cf78710396bffc.jpg"
-		},
-		{
-			"id": "ba027a8b7a0c4780abdbeaf2",
-			"title": "frapuccinos",
-			"img": "https://img-global.cpcdn.com/recipes/59c73e5b9b017c02/1360x964cq70/frappe-de-oreo-casero-foto-principal.webp"
-		},
-		{
-			"id": "1a9e85d6c1f04ffabcfb7683",
-			"title": "smoothies",
-			"img": "https://i.pinimg.com/564x/4c/15/b2/4c15b2bb40149263b24d3c3873f09e94.jpg"
-		},
-		{
-			"id": "8c34829ea7c54c4ba57ee05a",
-			"title": "panaderia",
-			"img": "https://i.pinimg.com/564x/96/64/49/96644962cc0a14be4822c1979a14dcd6.jpg"
-		},
-		{
-			"id": "8c34829ea7c54c4ba57ee05l",
-			"title": "tortas",
-			"img": "https://previews.123rf.com/images/grigory_bruev/grigory_bruev1704/grigory_bruev170400319/76438851-diversos-diversos-tipos-de-tortas-dulces-en-la-exhibici%C3%B3n-de-cristal-de-la-tienda-de-pasteles.jpg"
-		},
-		{
-			"id": "8c34829ea7c54hfasgf2512",
-			"title": "todos",
-			"img": "https://www.namesnack.com/images/namesnack-bakery-business-names-4568x3401-2020105.jpeg?crop=21:16,smart&width=420&dpr=2"
-		}
-	]
+  "categories": [
+    {
+      "id": "7f7c82b0cf0143edab598fb4",
+      "title": "cafeteria",
+      "img": "https://viapais.com.ar/resizer/wFiWIC2i536aUNaMlAeM-9T1X8g=/800x450/smart/filters:quality(75):format(webp)/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/LTSI3MLN35FSPLWIM2RF2ZFOJU.jpg"
+    },
+    {
+      "id": "a9ce71f49b094a6a9c456825",
+      "title": "milkshakes",
+      "img": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipes%2F2020-07-how-to-make-a-milkshake-at-home%2F2020-06-08_AT-K19388"
+    },
+    {
+      "id": "6dfe3a10a22141c59e8b8e0a",
+      "title": "licuados",
+      "img": "https://img.freepik.com/foto-gratis/surtido-vasos-batido-frutas-chocolate_23-2148707756.jpg?w=1380&t=st=1702995497~exp=1702996097~hmac=9c741380a6dc049fdda3c6ccf8263d63038fd7b3760ed8078d0b370f2e882170"
+    },
+    {
+      "id": "ba027a8b7a0c4780abdbeaf2",
+      "title": "frapuccinos",
+      "img": "https://img-global.cpcdn.com/recipes/59c73e5b9b017c02/1360x964cq70/frappe-de-oreo-casero-foto-principal.webp"
+    },
+    {
+      "id": "1a9e85d6c1f04ffabcfb7683",
+      "title": "smoothies",
+      "img": "https://img.freepik.com/foto-gratis/bodegon-delicioso-smoothie-verano_23-2148197893.jpg?w=1380&t=st=1702995442~exp=1702996042~hmac=7ec5abe24699b72eb054f08544f7177c33a625c0e4ef013b153f3b6d541bed57"
+    },
+    {
+      "id": "8c34829ea7c54c4ba57ee05a",
+      "title": "panaderia",
+      "img": "https://img.freepik.com/foto-gratis/vista-superior-surtido-pasteles-dulces_23-2148516578.jpg?w=1380&t=st=1702995292~exp=1702995892~hmac=8a51823c3094d6c3de686c956e3736a38db54f0a3097da497b26dd1ec8932483"
+    },
+    {
+      "id": "8c34829ea7c54c4ba57ee05l",
+      "title": "tortas",
+      "img": "https://previews.123rf.com/images/grigory_bruev/grigory_bruev1704/grigory_bruev170400319/76438851-diversos-diversos-tipos-de-tortas-dulces-en-la-exhibici%C3%B3n-de-cristal-de-la-tienda-de-pasteles.jpg"
+    },
+    {
+      "id": "8c34829ea7c54hfasgf2512",
+      "title": "todos",
+      "img": "https://www.namesnack.com/images/namesnack-bakery-business-names-4568x3401-2020105.jpeg?crop=21:16,smart&width=420&dpr=2"
+    }
+  ]
 }
