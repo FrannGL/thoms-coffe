@@ -40,7 +40,7 @@ const Products = ({ navigation, route }) => {
 					renderItem={({ item }) => <ProductCard item={item} />}
 				/>
 			</View>
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 };

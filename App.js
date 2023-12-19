@@ -1,11 +1,11 @@
-import Navigator from "./src/Navigation/navigator";
+import TabNavigator from "./src/Navigation/TabNavigator";
 import { StatusBar } from "expo-status-bar";
 
 export default function App() {
 	return (
 		<>
 			<StatusBar />
-			<Navigator />
+			<TabNavigator />
 		</>
 	);
 }

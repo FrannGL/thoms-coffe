@@ -19,7 +19,7 @@ const Categories = ({ navigation }) => {
 					)}
 				/>
 			</View>
-			<Footer />
+			{/* <Footer /> */}
 		</View>
 	);
 };
