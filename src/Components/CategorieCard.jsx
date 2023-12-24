@@ -1,9 +1,18 @@
 import { Dimensions } from "react-native";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { useDispatch } from "react-redux";
+import { setProdFilteredByCategory } from "../Store/features/shop/shopSlice";
 
 let deviceWidth = Dimensions.get("window").width * 0.95;
 
-const CategorieCard = ({ item, onPress }) => {
+const CategorieCard = ({ item, navigation }) => {
+	const dispatch = useDispatch();
+
+	const handlePress = () => {
+		dispatch(setProdFilteredByCategory(item.title));
+		navigation.navigate("Productos");
+	};
+
 	const setTitle = () => {
 		if (item.title === "todos") {
 			return "TODOS LOS PRODUCTOS";
@@ -13,7 +22,7 @@ const CategorieCard = ({ item, onPress }) => {
 	};
 
 	return (
-		<Pressable style={styles.card} onPress={() => onPress(item.title)}>
+		<Pressable style={styles.card} onPress={handlePress}>
 			<Image source={{ uri: item.img }} style={styles.thumbnail} />
 			<View style={styles.overlay}>
 				<Text style={styles.title}>{setTitle()}</Text>

@@ -17,6 +17,7 @@ const Popup = ({ item, isVisible, onAdd, onCancel }) => {
 						<Pressable
 							style={[styles.button, styles.addButton]}
 							onPress={() => {
+								console.log(item);
 								onAdd && onAdd(item);
 								onCancel && onCancel();
 							}}

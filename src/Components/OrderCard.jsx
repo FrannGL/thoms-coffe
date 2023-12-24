@@ -1,27 +1,8 @@
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setOrderDetail } from "../Store/features/shop/shopSlice";
-import Popup from "./Popup";
 
-const ProductCard = ({ item }) => {
+const OrderCard = ({ item }) => {
 	const [showPopup, setShowPopup] = useState(false);
-	const dispatch = useDispatch();
-
-	const handlePress = () => {
-		setShowPopup(true);
-	};
-
-	const handleCancel = () => {
-		setShowPopup(false);
-	};
-
-	const handleAdd = item => {
-		dispatch(setOrderDetail(item));
-		console.log(`${item.title} agregado a la orden`);
-		handleCancel();
-	};
 
 	return (
 		<View style={styles.productContainer}>
@@ -33,15 +14,11 @@ const ProductCard = ({ item }) => {
 				<Text style={styles.productDescription}>{item.description}</Text>
 				<Text style={styles.productPrice}>$ {`${item.price}`}.-</Text>
 			</View>
-			<Pressable onPress={handlePress}>
-				<MaterialIcons name='add-business' size={24} color='black' />
-			</Pressable>
-			<Popup item={item} isVisible={showPopup} onAdd={handleAdd} onCancel={handleCancel} />
 		</View>
 	);
 };
 
-export default ProductCard;
+export default OrderCard;
 
 const styles = StyleSheet.create({
 	productContainer: {
@@ -49,7 +26,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: "#ddd",
 		borderRadius: 8,
-		padding: 10,
+		padding: 5,
 		marginBottom: 15,
 		backgroundColor: "#F0F8F9",
 	},
@@ -58,8 +35,8 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 	},
 	productImage_container: {
-		width: 120,
-		height: 120,
+		width: 80,
+		height: 80,
 		borderRadius: 50,
 		marginRight: 15,
 	},
