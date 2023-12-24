@@ -24,9 +24,12 @@ export const shopSlice = createSlice({
 		setOrderDetail: (state, action) => {
 			state.value.orderDetail = [...state.value.orderDetail, action.payload];
 		},
+		onDelete: (state, action) => {
+			state.value.orderDetail = state.value.orderDetail.filter(item => item.id !== action.payload.id);
+		},
 	},
 });
 
-export const { setProdFilteredByCategory, setOrderDetail } = shopSlice.actions;
+export const { setProdFilteredByCategory, setOrderDetail, onDelete } = shopSlice.actions;
 
 export default shopSlice.reducer;

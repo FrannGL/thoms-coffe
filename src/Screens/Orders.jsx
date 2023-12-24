@@ -1,12 +1,19 @@
-import { View, Text, FlatList, StyleSheet, Image } from "react-native";
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
 import OrderCard from "../Components/OrderCard";
 import url from "../../public/assets/home_background.jpg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { MaterialIcons } from "@expo/vector-icons";
+import { onDelete } from "../Store/features/shop/shopSlice";
 
-const Orders = () => {
+const Orders = ({ navigation }) => {
 	const order = useSelector(state => state.shop.value.orderDetail);
+	const dispatch = useDispatch();
 
 	const prodsInCart = order.length > 0 ? true : false;
+
+	const handleDelete = item => {
+		dispatch(onDelete(item));
+	};
 
 	return (
 		<View style={styles.container}>
@@ -14,12 +21,20 @@ const Orders = () => {
 				<Image source={url} style={styles.backgroundImage} />
 			</View>
 			{prodsInCart ? (
-				<FlatList data={order} keyExtractor={prod => prod.id} renderItem={({ item }) => <OrderCard item={item} />} />
+				<FlatList
+					data={order}
+					keyExtractor={prod => prod.id}
+					renderItem={({ item }) => <OrderCard item={item} onDelete={handleDelete} />}
+				/>
 			) : (
 				<View style={styles.text_container}>
 					<View style={styles.border_container}>
+						<MaterialIcons name='error' size={24} color='red' />
 						<Text style={styles.text}>Todavia no seleccionaste productos</Text>
 					</View>
+					<TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate("Categorias")}>
+						<Text style={styles.buttonText}>IR A CATEGORIAS</Text>
+					</TouchableOpacity>
 				</View>
 			)}
 		</View>
@@ -50,7 +65,10 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	border_container: {
-		width: "60%",
+		justifyContent: "center",
+		alignItems: "center",
+		flexDirection: "row",
+		width: "70%",
 		borderWidth: 2,
 		borderColor: "white",
 		backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -83,6 +101,24 @@ const styles = StyleSheet.create({
 	},
 	noOrderText: {
 		fontSize: 16,
+		textAlign: "center",
+	},
+	buttonContainer: {
+		position: "absolute",
+		justifyContent: "center",
+		alignItems: "center",
+		bottom: 150,
+		padding: 15,
+		borderRadius: 10,
+		marginTop: 20,
+		backgroundColor: "rgba(0, 0, 0, 0.5)",
+		borderWidth: 1,
+		borderColor: "white",
+	},
+	buttonText: {
+		color: "white",
+		fontSize: 18,
+		fontWeight: "bold",
 		textAlign: "center",
 	},
 });

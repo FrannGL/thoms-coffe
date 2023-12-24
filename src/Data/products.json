@@ -241,7 +241,7 @@
 			"img": "https://images.hola.com/imagenes/cocina/recetas/20210611191292/batido-arandanos-platano/0-963-133/batido-arandanos-t.jpg"
 		},
 		{
-			"_id": "b4f1e8d7-2c91-4",
+			"id": "b4f1e8d7-2c91-4",
 			"title": "Frapuccino Caramelo",
 			"category": "frapuccinos",
 			"description": "Refrescante frapuccino con sirope de caramelo y crema batida.",
@@ -249,7 +249,7 @@
 			"img": "https://www.clarin.com/2022/01/05/kBr7P45oY_1200x0__1.jpg"
 		},
 		{
-			"_id": "a7c1d9b2-4e89-4",
+			"id": "a7c1d9b2-4e89-4",
 			"title": "Frapuccino Vainilla",
 			"category": "frapuccinos",
 			"description": "Suave frapuccino con esencia de vainilla y toque de canela.",
@@ -257,7 +257,7 @@
 			"img": "https://www.sweetfixbaker.com/wp-content/uploads/2023/05/Vanilla-Coffee-Frappuccino-Recipe-500x500.jpg"
 		},
 		{
-			"_id": "d1b4e2a8-5c36-4",
+			"id": "d1b4e2a8-5c36-4",
 			"title": "Frapuccino Mocha",
 			"category": "frapuccinos",
 			"description": "Delicioso frapuccino con chocolate, café y crema batida.",
@@ -265,7 +265,7 @@
 			"img": "https://www.eatingonadime.com/wp-content/uploads/2023/05/Starbucks-Mocha-Frappuccino-200-300KB-14.jpg"
 		},
 		{
-			"_id": "f9c4b1e8-7d23-4",
+			"id": "f9c4b1e8-7d23-4",
 			"title": "Frapuccino Fresa",
 			"category": "frapuccinos",
 			"description": "Frapuccino con sabor a fresa, perfecto para los amantes de las frutas.",
@@ -273,7 +273,7 @@
 			"img": "https://i.pinimg.com/736x/fe/39/71/fe39718d7054dea8523d06edfccf35c6.jpg"
 		},
 		{
-			"_id": "e5d9b2c1-8f41-4",
+			"id": "e5d9b2c1-8f41-4",
 			"title": "Frapuccino Cookies & Cream",
 			"category": "frapuccinos",
 			"description": "Irresistible frapuccino con trozos de galletas oreo y crema.",
@@ -281,7 +281,7 @@
 			"img": "https://www.eatingonadime.com/wp-content/uploads/2023/05/200-300KB-Starbucks-Cookies-_-Cream-13.jpg"
 		},
 		{
-			"_id": "c3a8d7e2-1f94-4",
+			"id": "c3a8d7e2-1f94-4",
 			"title": "Frapuccino Avellana",
 			"category": "frapuccinos",
 			"description": "Frapuccino con delicioso sabor a avellana y decorado con nueces.",
@@ -289,7 +289,7 @@
 			"img": "https://images.hola.com/imagenes/cocina/recetas/20201026177992/smoothie-frappe-chocolate-cafe-avellana/0-882-221/frappe-age-m.jpg"
 		},
 		{
-			"_id": "d7e2a8c3-9f51-4",
+			"id": "d7e2a8c3-9f51-4",
 			"title": "Frapuccino Coco",
 			"category": "frapuccinos",
 			"description": "Frapuccino tropical con leche de coco y esencia de piña.",
@@ -297,7 +297,7 @@
 			"img": "https://polacocina.com/wp-content/uploads/2020/07/Frappe%CC%81-de-cafe%CC%81-con-coco.jpg"
 		},
 		{
-			"_id": "b1f9e8d2-a6c71",
+			"id": "b1f9e8d2-a6c71",
 			"title": "Frapuccino Canela Dulce",
 			"category": "frapuccinos",
 			"description": "Frapuccino con un toque de canela dulce y crema batida.",
@@ -305,7 +305,7 @@
 			"img": "https://www.elglobo.com.mx/cdn/shop/articles/ONL_ELG_Cover-web_Articulo_Frappucino_18.07.22_1.jpg?v=1658284612"
 		},
 		{
-			"_id": "z1G6oN9sRm",
+			"id": "z1G6oN9sRm",
 			"title": "Frapuccino Almendra",
 			"category": "frapuccinos",
 			"description": "Frapuccino con leche de almendra y almendras tostadas.",
@@ -313,7 +313,7 @@
 			"img": "https://almendrina.com/wp-content/uploads/2018/07/iced-coffee-2305203_640.jpg"
 		},
 		{
-			"_id": "a4c3b2e1-8d54-4",
+			"id": "a4c3b2e1-8d54-4",
 			"title": "Frapuccino Mango Passion",
 			"category": "frapuccinos",
 			"description": "Frapuccino tropical con mango y maracuyá para una explosión de sabor.",
@@ -321,7 +321,7 @@
 			"img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqCBBfliYdShgKn-ecAbjULZyWQ4xfm_1--1qpj3JZinb7JsMtxi6JajdhoXIq2UExKFk&usqp=CAU"
 		},
 		{
-			"_id": "e1a4c2d9-b87f3",
+			"id": "e1a4c2d9-b87f3",
 			"title": "Smoothie TropiFresco",
 			"description": "Smoothie refrescante con piña, mango y fresas.",
 			"price": 2495,
@@ -329,7 +329,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "c8b4f1e8-6d20-4",
+			"id": "c8b4f1e8-6d20-4",
 			"title": "Smoothie Green",
 			"description": "Smoothie lleno de energía con espinacas, plátano y manzana.",
 			"price": 2745,
@@ -337,7 +337,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "a1b4e2c3-9d53-4",
+			"id": "a1b4e2c3-9d53-4",
 			"title": "Smoothie Berry Burst",
 			"description": "Smoothie explosión de bayas con arándanos, frambuesas y moras.",
 			"price": 2995,
@@ -345,7 +345,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "f1e8d7a3-c29b1",
+			"id": "f1e8d7a3-c29b1",
 			"title": "Smoothie Piña Colada",
 			"description": "Smoothie tropical con piña, coco y plátano.",
 			"price": 3145,
@@ -353,7 +353,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "b2c1d9b4-6e35-4",
+			"id": "b2c1d9b4-6e35-4",
 			"title": "Smoothie Mango Sunrise",
 			"description": "Smoothie con el brillo del mango y la dulzura de la naranja.",
 			"price": 3495,
@@ -361,7 +361,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "d9b2e1a4-8c32-4",
+			"id": "d9b2e1a4-8c32-4",
 			"title": "Smoothie Detox Verde",
 			"description": "Smoothie verde detox con pepino, espinacas y manzana verde.",
 			"price": 3745,
@@ -369,7 +369,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "c4b1f9e8-7d25-4",
+			"id": "c4b1f9e8-7d25-4",
 			"title": "Smoothie Frutas Tropicales",
 			"description": "Smoothie con la frescura de frutas tropicales como kiwi y maracuyá.",
 			"price": 3395,
@@ -377,7 +377,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "e2a8c3d1-9f72-4",
+			"id": "e2a8c3d1-9f72-4",
 			"title": "Smoothie Berry Citrus Blast",
 			"description": "Smoothie explosión cítrica con bayas y toques de naranja.",
 			"price": 3995,
@@ -385,7 +385,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "d7e2a8c3-9f57-4",
+			"id": "d7e2a8c3-9f57-4",
 			"title": "Smoothie Coco Loco",
 			"description": "Smoothie con la locura del coco y la frescura de la piña.",
 			"price": 3645,
@@ -393,7 +393,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "a3b9d1c8-6e27-4",
+			"id": "a3b9d1c8-6e27-4",
 			"title": "Smoothie Melón Delight",
 			"description": "Smoothie con la delicia del melón y un toque de menta.",
 			"price": 4245,
@@ -401,7 +401,7 @@
 			"category": "smoothies"
 		},
 		{
-			"_id": "c1a7e5d9-4f60-4",
+			"id": "c1a7e5d9-4f60-4",
 			"title": "Medialuna JyQ",
 			"description": "Delicadas y jugosas, la fusión perfecta de hojaldre, jamón y queso.",
 			"price": 995,
@@ -409,7 +409,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "e8d2a1b4-9c31-4",
+			"id": "e8d2a1b4-9c31-4",
 			"title": "Croissant de Mantequilla",
 			"description": "Croissant hojaldrado y esponjoso con un corazón de mantequilla.",
 			"price": 1745,
@@ -417,7 +417,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "b4f1e8d7-2c95-4",
+			"id": "b4f1e8d7-2c95-4",
 			"title": "Roll de Canela",
 			"description": " Un deleite esponjoso con canela y glaseado, irresistible y reconfortante.",
 			"price": 1495,
@@ -425,7 +425,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "a7c1d9b2-4e81-4",
+			"id": "a7c1d9b2-4e81-4",
 			"title": "Tostados de Avena",
 			"description": "Tostados crujientes con copos de avena y miel.",
 			"price": 2145,
@@ -433,7 +433,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "d1b4e2a8-5c31-4",
+			"id": "d1b4e2a8-5c31-4",
 			"title": "Waffle",
 			"description": "Crujientes por fuera, tiernos por dentro, con un toque de vainilla que eleva cada mordisco.",
 			"price": 2995,
@@ -441,7 +441,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "f9c4b1e8-7d29-4",
+			"id": "f9c4b1e8-7d29-4",
 			"title": "Donas Glaseadas",
 			"description": "Donas esponjosas y glaseadas en una variedad de sabores.",
 			"price": 1245,
@@ -449,7 +449,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "e5d9b2c1-8f43-4",
+			"id": "e5d9b2c1-8f43-4",
 			"title": "Muffins",
 			"description": "Un festín esponjoso lleno de arándanos jugosos, con un toque dulce que encantará tu paladar.",
 			"price": 1995,
@@ -457,7 +457,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "c3a8d7e2-1f98-4",
+			"id": "c3a8d7e2-1f98-4",
 			"title": "Pastelitos",
 			"description": "Una explosión de sabor, envueltos en masa hojaldrada y espolvoreados con canela.",
 			"price": 1395,
@@ -465,7 +465,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "d7e2a8c3-9f52-4",
+			"id": "d7e2a8c3-9f52-4",
 			"title": "Tostado JyQ",
 			"description": "Una deliciosa combinación, entre panes perfectamente crujientes.",
 			"price": 3245,
@@ -473,7 +473,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "b1f9e8d2-a6c78",
+			"id": "b1f9e8d2-a6c78",
 			"title": "Cremona JyQ",
 			"description": "Un bocado cremoso y reconfortante, con la exquisitez del jamón en cada capa de hojaldre.",
 			"price": 2245,
@@ -481,7 +481,7 @@
 			"category": "panaderia"
 		},
 		{
-			"_id": "a4c3b2e1-8d58-4",
+			"id": "a4c3b2e1-8d58-4",
 			"title": "Torta de Chocolate",
 			"description": "Deliciosa torta de chocolate con cobertura de ganache.",
 			"price": 1300,
@@ -489,7 +489,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "e1a4c2d9-b87f8",
+			"id": "e1a4c2d9-b87f8",
 			"title": "Torta de Vainilla",
 			"description": "Torta esponjosa de vainilla con crema de mantequilla.",
 			"price": 1100,
@@ -497,7 +497,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "c8b4f1e8-6d24-4",
+			"id": "c8b4f1e8-6d24-4",
 			"title": "Torta Cheesscake",
 			"description": "Deliciosa y cremosa, un placer en cada bocado.",
 			"price": 2000,
@@ -505,7 +505,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "a1b4e2c3-9d58-4",
+			"id": "a1b4e2c3-9d58-4",
 			"title": "Torta Red Velvet",
 			"description": "Elegante torta red velvet con queso crema.",
 			"price": 2200,
@@ -513,7 +513,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "f1e8d7a3-c29b7",
+			"id": "f1e8d7a3-c29b7",
 			"title": "Torta de Limón",
 			"description": "Torta refrescante de limón con glaseado de limón.",
 			"price": 1500,
@@ -521,7 +521,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "b2c1d9b4-6e37-4",
+			"id": "b2c1d9b4-6e37-4",
 			"title": "Torta de Nuez",
 			"description": "Torta rica en nueces y caramelo.",
 			"price": 1400,
@@ -529,7 +529,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "d9b2e1a4-8c38-4",
+			"id": "d9b2e1a4-8c38-4",
 			"title": "Torta Mocha",
 			"description": "Torta con el equilibrio perfecto entre chocolate y café.",
 			"price": 2000,
@@ -537,7 +537,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "c4b1f9e8-7d26-4",
+			"id": "c4b1f9e8-7d26-4",
 			"title": "Torta de Frutas",
 			"description": "Torta fresca con variedad de frutas de temporada.",
 			"price": 2500,
@@ -545,7 +545,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "e2a8c3d1-9f76-4",
+			"id": "e2a8c3d1-9f76-4",
 			"title": "Torta Tiramisú",
 			"description": "Torta italiana de tiramisú con capas de café y mascarpone.",
 			"price": 2350,
@@ -553,7 +553,7 @@
 			"category": "tortas"
 		},
 		{
-			"_id": "d7e2a8c3-9f53-4",
+			"id": "d7e2a8c3-9f53-4",
 			"title": "Torta de Zanahoria",
 			"description": "Torta húmeda de zanahoria con frosting de queso crema.",
 			"price": 1500,
