@@ -4,7 +4,6 @@ import { AntDesign } from "@expo/vector-icons";
 import PopupDelete from "./PopupDelete";
 
 const OrderCard = ({ item, onDelete }) => {
-	const [quantity, setQuantity] = useState(1);
 	const [showDeletePopup, setShowDeletePopup] = useState(false);
 
 	const increaseQuantity = () => {
@@ -42,7 +41,7 @@ const OrderCard = ({ item, onDelete }) => {
 						<Text style={styles.priceText}>Precio: </Text>
 						<Text style={styles.price}>${item.price}.-</Text>
 					</View>
-					<Text>Cantidad x{quantity}</Text>
+					<Text>Cantidad x{item.quantity}</Text>
 				</View>
 				<Pressable onPress={handleDeletePress}>
 					<AntDesign name='delete' size={24} color='red' />

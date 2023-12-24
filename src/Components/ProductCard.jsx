@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setOrderDetail } from "../Store/features/shop/shopSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setOrderDetail, updateQuantity } from "../Store/features/shop/shopSlice";
 import Popup from "./Popup";
 
 const ProductCard = ({ item }) => {
 	const [showPopup, setShowPopup] = useState(false);
 	const dispatch = useDispatch();
+	const orderDetail = useSelector(state => state.shop.value.orderDetail);
 
 	const handlePress = () => {
 		setShowPopup(true);
@@ -18,7 +19,16 @@ const ProductCard = ({ item }) => {
 	};
 
 	const handleAdd = item => {
-		dispatch(setOrderDetail(item));
+		const existingProduct = orderDetail.find(prod => prod.id === item.id);
+
+		if (existingProduct) {
+			// Si el producto ya está en la orden, actualiza la cantidad en el slice
+			dispatch(setOrderDetail({ id: item.id }));
+		} else {
+			// Si el producto no está en la orden, agrégalo con cantidad 1 en el slice
+			dispatch(setOrderDetail({ ...item }));
+		}
+
 		console.log(`${item.title} agregado a la orden`);
 		handleCancel();
 	};

@@ -21,11 +21,13 @@ const Orders = ({ navigation }) => {
 				<Image source={url} style={styles.backgroundImage} />
 			</View>
 			{prodsInCart ? (
-				<FlatList
-					data={order}
-					keyExtractor={prod => prod.id}
-					renderItem={({ item }) => <OrderCard item={item} onDelete={handleDelete} />}
-				/>
+				<>
+					<FlatList
+						data={order}
+						keyExtractor={prod => prod.id}
+						renderItem={({ item }) => <OrderCard item={item} onDelete={handleDelete} />}
+					/>
+				</>
 			) : (
 				<View style={styles.text_container}>
 					<View style={styles.border_container}>
