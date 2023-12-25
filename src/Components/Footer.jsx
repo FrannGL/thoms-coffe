@@ -18,7 +18,7 @@ const Footer = () => {
 					<FontAwesome name='linkedin-square' size={30} color='#0077B5' style={styles.icon} />
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => handleIconPress("https://www.github.com/FrannGL")}>
-					<AntDesign name='github' size={30} color='#24292E' style={styles.icon} />
+					<AntDesign name='github' size={30} color='#dadada' style={styles.icon} />
 				</TouchableOpacity>
 			</View>
 		</View>
@@ -32,9 +32,8 @@ const styles = StyleSheet.create({
 		flexDirection: "column",
 		justifyContent: "space-around",
 		alignItems: "center",
-		backgroundColor: "#fff",
+		backgroundColor: "rgba(0, 0, 0, 0.5)",
 		paddingVertical: 5,
-		borderTopWidth: 1,
 		borderTopColor: "#ddd",
 	},
 	iconsContainer: {

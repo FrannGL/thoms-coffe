@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { StyleSheet, View, FlatList, Image } from "react-native";
 import CategorieCard from "../Components/CategorieCard.jsx";
 import url from "../../public/assets/home_background.jpg";
-import Footer from "../Components/Footer.jsx";
 
 const Categories = ({ navigation }) => {
 	const categories = useSelector(state => state.shop.value.categories.categories);
@@ -19,7 +18,6 @@ const Categories = ({ navigation }) => {
 					renderItem={({ item }) => <CategorieCard item={item} navigation={navigation} />}
 				/>
 			</View>
-			{/* <Footer /> */}
 		</View>
 	);
 };

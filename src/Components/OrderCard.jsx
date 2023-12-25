@@ -1,10 +1,20 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import PopupDelete from "./PopupDelete";
+import Popup from "./Popup";
+import Toast from "react-native-toast-message";
 
 const OrderCard = ({ item, onDelete }) => {
 	const [showDeletePopup, setShowDeletePopup] = useState(false);
+
+	const showToast = () => {
+		Toast.show({
+			type: "success",
+			text1: "Producto eliminado de tu orden",
+			text2: "Para agregar más productos ingresa a Categorias 🛍️",
+			visibilityTime: 5000,
+		});
+	};
 
 	const increaseQuantity = () => {
 		setQuantity(prevQuantity => prevQuantity + 1);
@@ -26,6 +36,7 @@ const OrderCard = ({ item, onDelete }) => {
 
 	const handleDeleteConfirm = () => {
 		onDelete(item);
+		showToast();
 		setShowDeletePopup(false);
 	};
 
@@ -47,7 +58,8 @@ const OrderCard = ({ item, onDelete }) => {
 					<AntDesign name='delete' size={24} color='red' />
 				</Pressable>
 				{showDeletePopup && (
-					<PopupDelete
+					<Popup
+						type={"delete"}
 						isVisible={showDeletePopup}
 						onCancel={handleDeleteCancel}
 						onConfirm={handleDeleteConfirm}

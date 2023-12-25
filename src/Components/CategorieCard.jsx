@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useDispatch } from "react-redux";
-import { setProdFilteredByCategory } from "../Store/features/shop/shopSlice";
+import { setProdFilteredByCategory } from "../features/shop/shopSlice.js";
 
 let deviceWidth = Dimensions.get("window").width * 0.95;
 

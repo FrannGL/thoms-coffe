@@ -2,13 +2,23 @@ import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrderDetail, updateQuantity } from "../Store/features/shop/shopSlice";
+import { setOrderDetail } from "../features/shop/shopSlice.js";
 import Popup from "./Popup";
+import Toast from "react-native-toast-message";
 
 const ProductCard = ({ item }) => {
 	const [showPopup, setShowPopup] = useState(false);
 	const dispatch = useDispatch();
 	const orderDetail = useSelector(state => state.shop.value.orderDetail);
+
+	const showToast = () => {
+		Toast.show({
+			type: "success",
+			text1: "Agregado correctamente a tu orden",
+			text2: "Para visualizar tu orden ingresa a Mi Orden ☕🍰",
+			visibilityTime: 5000,
+		});
+	};
 
 	const handlePress = () => {
 		setShowPopup(true);
@@ -19,6 +29,7 @@ const ProductCard = ({ item }) => {
 	};
 
 	const handleAdd = item => {
+		showToast();
 		const existingProduct = orderDetail.find(prod => prod.id === item.id);
 
 		if (existingProduct) {
@@ -28,8 +39,7 @@ const ProductCard = ({ item }) => {
 			// Si el producto no está en la orden, agrégalo con cantidad 1 en el slice
 			dispatch(setOrderDetail({ ...item }));
 		}
-
-		handleCancel();
+		setShowPopup(false);
 	};
 
 	return (
@@ -45,7 +55,7 @@ const ProductCard = ({ item }) => {
 			<Pressable onPress={handlePress}>
 				<MaterialIcons name='add-business' size={24} color='black' />
 			</Pressable>
-			<Popup item={item} isVisible={showPopup} onAdd={handleAdd} onCancel={handleCancel} />
+			<Popup type={"agregar"} item={item} isVisible={showPopup} onAdd={handleAdd} onCancel={handleCancel} />
 		</View>
 	);
 };

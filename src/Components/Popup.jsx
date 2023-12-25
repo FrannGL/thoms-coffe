@@ -1,13 +1,16 @@
+import React from "react";
 import { View, Text, StyleSheet, Modal, Pressable } from "react-native";
 
-const Popup = ({ item, isVisible, onAdd, onCancel }) => {
+const Popup = ({ type, isVisible, onCancel, onConfirm, onAdd, item }) => {
+	const isDeletePopup = type === "delete";
+
 	return (
 		<Modal animationType='slide' transparent={true} visible={isVisible} onRequestClose={onCancel}>
 			<View style={styles.centeredView}>
 				<View style={styles.modalView}>
-					<Text>{`¿Quieres agregar `}</Text>
+					<Text>{`¿Quieres ${isDeletePopup ? "eliminar" : "agregar"} `}</Text>
 					<Text style={{ fontWeight: "bold" }}>{`${item.title}`}</Text>
-					<Text>{` a tu orden?`}</Text>
+					<Text>{` ${isDeletePopup ? "de tu orden" : "a tu orden"}?`}</Text>
 
 					<View style={styles.buttonContainer}>
 						<Pressable style={[styles.button, styles.cancelButton]} onPress={onCancel}>
@@ -15,13 +18,17 @@ const Popup = ({ item, isVisible, onAdd, onCancel }) => {
 						</Pressable>
 
 						<Pressable
-							style={[styles.button, styles.addButton]}
+							style={[styles.button, isDeletePopup ? styles.addButton : styles.deleteButton]}
 							onPress={() => {
-								onAdd && onAdd(item);
+								if (isDeletePopup) {
+									onConfirm && onConfirm(item);
+								} else {
+									onAdd && onAdd(item);
+								}
 								onCancel && onCancel();
 							}}
 						>
-							<Text style={styles.buttonText}>Agregar</Text>
+							<Text style={styles.buttonText}>{isDeletePopup ? "Eliminar" : "Agregar"}</Text>
 						</Pressable>
 					</View>
 				</View>
@@ -64,6 +71,9 @@ const styles = StyleSheet.create({
 		backgroundColor: "#DA0303",
 	},
 	addButton: {
+		backgroundColor: "#03AF60",
+	},
+	deleteButton: {
 		backgroundColor: "#03AF60",
 	},
 	buttonText: {

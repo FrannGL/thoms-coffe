@@ -3,7 +3,7 @@ import OrderCard from "../Components/OrderCard";
 import url from "../../public/assets/home_background.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
-import { onDelete, setOrderTotal } from "../Store/features/shop/shopSlice";
+import { onDelete, setOrderTotal } from "../features/shop/shopSlice.js";
 import { useEffect } from "react";
 
 const Orders = ({ navigation }) => {
@@ -26,7 +26,6 @@ const Orders = ({ navigation }) => {
 			<View style={styles.backgroundContainer}>
 				<Image source={url} style={styles.backgroundImage} />
 			</View>
-			<Text style={styles.title}>Detalle de la orden</Text>
 			{prodsInCart ? (
 				<View style={styles.orderContainer}>
 					<FlatList
@@ -63,6 +62,7 @@ export default Orders;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		height: "100%",
 		backgroundColor: "#2F2F2E",
 		paddingVertical: 20,
 		justifyContent: "flex-start",
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 	},
 	orderContainer: {
 		width: "90%",
-		maxHeight: "88%",
+		maxHeight: "95%",
 		paddingVertical: 10,
 	},
 	wrapper: {
