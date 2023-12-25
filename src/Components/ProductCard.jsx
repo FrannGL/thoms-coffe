@@ -29,7 +29,6 @@ const ProductCard = ({ item }) => {
 			dispatch(setOrderDetail({ ...item }));
 		}
 
-		console.log(`${item.title} agregado a la orden`);
 		handleCancel();
 	};
 

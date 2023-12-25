@@ -6,9 +6,9 @@ const initialState = {
 	value: {
 		products: allProducts,
 		categories: allCategories,
-		productSelected: {},
 		prodFilteredByCategory: [],
 		orderDetail: [],
+		orderTotal: 0,
 	},
 };
 
@@ -31,6 +31,11 @@ export const shopSlice = createSlice({
 				state.value.orderDetail = [...state.value.orderDetail, { ...action.payload, quantity: 1 }];
 			}
 		},
+		setOrderTotal: state => {
+			state.value.orderTotal = state.value.orderDetail.reduce((total, item) => {
+				return total + item.price * item.quantity;
+			}, 0);
+		},
 		onDelete: (state, action) => {
 			state.value.orderDetail = state.value.orderDetail.filter(item => item.id !== action.payload.id);
 		},
@@ -42,17 +47,9 @@ export const shopSlice = createSlice({
 				existingProduct.quantity += quantity;
 			}
 		},
-		getTotalOrder: state => {
-			const totalOrderPrice = state.value.orderDetail.reduce(
-				(total, product) => total + product.price * product.quantity,
-				0
-			);
-
-			return totalOrderPrice;
-		},
 	},
 });
 
-export const { setProdFilteredByCategory, setOrderDetail, onDelete, updateQuantity, getTotalOrder } = shopSlice.actions;
+export const { setProdFilteredByCategory, setOrderDetail, onDelete, updateQuantity, setOrderTotal } = shopSlice.actions;
 
 export default shopSlice.reducer;

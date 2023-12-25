@@ -1,13 +1,19 @@
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 import OrderCard from "../Components/OrderCard";
 import url from "../../public/assets/home_background.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
-import { onDelete } from "../Store/features/shop/shopSlice";
+import { onDelete, setOrderTotal } from "../Store/features/shop/shopSlice";
+import { useEffect } from "react";
 
 const Orders = ({ navigation }) => {
 	const order = useSelector(state => state.shop.value.orderDetail);
+	const orderTotal = useSelector(state => state.shop.value.orderTotal);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(setOrderTotal());
+	}, [order, dispatch]);
 
 	const prodsInCart = order.length > 0 ? true : false;
 
@@ -20,14 +26,23 @@ const Orders = ({ navigation }) => {
 			<View style={styles.backgroundContainer}>
 				<Image source={url} style={styles.backgroundImage} />
 			</View>
+			<Text style={styles.title}>Detalle de la orden</Text>
 			{prodsInCart ? (
-				<>
+				<View style={styles.orderContainer}>
 					<FlatList
 						data={order}
 						keyExtractor={prod => prod.id}
 						renderItem={({ item }) => <OrderCard item={item} onDelete={handleDelete} />}
 					/>
-				</>
+					<View style={styles.wrapper}>
+						<View style={styles.orderTotal}>
+							<Text style={styles.total}>Total: ${orderTotal}</Text>
+						</View>
+					</View>
+					<TouchableOpacity style={styles.btn}>
+						<Text style={styles.btnText}>ENVIAR ORDEN</Text>
+					</TouchableOpacity>
+				</View>
 			) : (
 				<View style={styles.text_container}>
 					<View style={styles.border_container}>
@@ -49,6 +64,20 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "#2F2F2E",
+		paddingVertical: 20,
+		justifyContent: "flex-start",
+		alignItems: "center",
+	},
+	title: {
+		position: "relative",
+		textAlign: "center",
+		fontSize: 20,
+		fontWeight: "bold",
+		marginBottom: 10,
+		color: "#fff",
+		textShadowColor: "#000",
+		textShadowOffset: { width: 0, height: 2 },
+		textShadowRadius: 2,
 	},
 	backgroundContainer: {
 		...StyleSheet.absoluteFillObject,
@@ -60,6 +89,48 @@ const styles = StyleSheet.create({
 		resizeMode: "cover",
 		width: "100%",
 		height: "100%",
+	},
+	orderContainer: {
+		width: "90%",
+		maxHeight: "88%",
+		paddingVertical: 10,
+	},
+	wrapper: {
+		justifyContent: "flex-end",
+		alignItems: "flex-end",
+		paddingVertical: 10,
+	},
+	orderTotal: {
+		width: "38%",
+		borderWidth: 2,
+		borderColor: "white",
+		backgroundColor: "rgba(0, 0, 0, 0.5)",
+		borderRadius: 10,
+		padding: 8,
+	},
+	total: {
+		color: "#fff",
+		fontWeight: "bold",
+		textShadowColor: "#000",
+		textShadowOffset: { width: 0, height: 2 },
+		textShadowRadius: 2,
+		fontSize: 20,
+		textAlign: "center",
+	},
+	btn: {
+		backgroundColor: "green",
+		padding: 10,
+		borderRadius: 15,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	btnText: {
+		color: "#fff",
+		fontSize: 16,
+		fontWeight: "bold",
+		textShadowColor: "#000",
+		textShadowOffset: { width: 0, height: 2 },
+		textShadowRadius: 2,
 	},
 	text_container: {
 		flex: 1,
