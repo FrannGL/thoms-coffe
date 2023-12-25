@@ -3,9 +3,13 @@ import { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import Popup from "./Popup";
 import Toast from "react-native-toast-message";
+import QuantityControls from "./QuantityControls";
+import { useDispatch } from "react-redux";
+import { setOrderTotal, updateQuantity } from "../features/shop/shopSlice";
 
 const OrderCard = ({ item, onDelete }) => {
 	const [showDeletePopup, setShowDeletePopup] = useState(false);
+	const dispatch = useDispatch();
 
 	const showToast = () => {
 		Toast.show({
@@ -17,13 +21,13 @@ const OrderCard = ({ item, onDelete }) => {
 	};
 
 	const increaseQuantity = () => {
-		setQuantity(prevQuantity => prevQuantity + 1);
+		dispatch(updateQuantity({ productId: item.id, quantity: 1 }));
+		dispatch(setOrderTotal());
 	};
 
 	const decreaseQuantity = () => {
-		if (quantity > 1) {
-			setQuantity(prevQuantity => prevQuantity - 1);
-		}
+		dispatch(updateQuantity({ productId: item.id, quantity: -1 }));
+		dispatch(setOrderTotal());
 	};
 
 	const handleDeletePress = () => {
@@ -52,7 +56,15 @@ const OrderCard = ({ item, onDelete }) => {
 						<Text style={styles.priceText}>Precio: </Text>
 						<Text style={styles.price}>${item.price}.-</Text>
 					</View>
-					<Text>Cantidad x{item.quantity}</Text>
+					<View style={styles.quantityContainer}>
+						<Text>Cantidad x</Text>
+						<QuantityControls
+							quantity={item.quantity}
+							onIncrease={increaseQuantity}
+							onDecrease={decreaseQuantity}
+							minQuantity={1}
+						/>
+					</View>
 				</View>
 				<Pressable onPress={handleDeletePress}>
 					<AntDesign name='delete' size={24} color='red' />
@@ -122,5 +134,10 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: "bold",
 		color: "green",
+	},
+	quantityContainer: {
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center",
 	},
 });
