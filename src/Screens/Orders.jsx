@@ -1,15 +1,37 @@
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import OrderCard from "../Components/OrderCard";
 import url from "../../public/assets/home_background.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
 import { onDelete, setOrderTotal } from "../features/shop/shopSlice.js";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import Toast from "react-native-toast-message";
+import { Dimensions } from "react-native";
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const Orders = ({ navigation }) => {
 	const order = useSelector(state => state.shop.value.orderDetail);
 	const orderTotal = useSelector(state => state.shop.value.orderTotal);
+	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
+
+	const showToast = () => {
+		Toast.show({
+			type: "success",
+			text1: "Orden enviada exitosamente",
+			text2: "Para visualizar tu orden ingresa a Mi Orden ☕🍰",
+			visibilityTime: 5000,
+		});
+	};
+
+	const handleSend = () => {
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+			showToast();
+		}, 5000);
+	};
 
 	useEffect(() => {
 		dispatch(setOrderTotal());
@@ -38,7 +60,7 @@ const Orders = ({ navigation }) => {
 							<Text style={styles.total}>Total: ${orderTotal}</Text>
 						</View>
 					</View>
-					<TouchableOpacity style={styles.btn}>
+					<TouchableOpacity style={styles.btn} onPress={handleSend}>
 						<Text style={styles.btnText}>ENVIAR ORDEN</Text>
 					</TouchableOpacity>
 				</View>
@@ -51,6 +73,15 @@ const Orders = ({ navigation }) => {
 					<TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate("Categorias")}>
 						<Text style={styles.buttonText}>IR A CATEGORIAS</Text>
 					</TouchableOpacity>
+				</View>
+			)}
+			{loading && (
+				<View style={styles.sendContainer}>
+					<View style={styles.sendBackground}></View>
+					<View style={styles.sendContent}>
+						<Text style={styles.sendText}>Enviando orden...</Text>
+						<ActivityIndicator size='large' color='#00ff00' />
+					</View>
 				</View>
 			)}
 		</View>
@@ -193,5 +224,37 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: "bold",
 		textAlign: "center",
+	},
+	sendBackground: {
+		...StyleSheet.absoluteFillObject,
+		backgroundColor: "rgba(0, 0, 0, 0.2)",
+		zIndex: 998, // Coloca el fondo oscuro detrás del contenido
+	},
+	sendContent: {
+		zIndex: 999,
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		width: screenWidth * 0.8, // Ajusta el ancho según tus necesidades
+		height: screenHeight * 0.2, // Ajusta la altura según tus necesidades
+		marginLeft: -(screenWidth * 0.4), // Mitad del ancho negativo
+		marginTop: -(screenHeight * 0.1), // Mitad de la altura negativa
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	sendContainer: {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo oscuro
+		justifyContent: "center",
+		alignItems: "center",
+		zIndex: 999, // Asegura que esté por encima de otros elementos
+	},
+	sendText: {
+		color: "white",
+		fontSize: 30,
 	},
 });
