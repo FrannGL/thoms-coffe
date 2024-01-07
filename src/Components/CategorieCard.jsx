@@ -1,16 +1,12 @@
 import { Dimensions } from "react-native";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
-import { useDispatch } from "react-redux";
-import { setProdFilteredByCategory } from "../features/shop/shopSlice.js";
 
 let deviceWidth = Dimensions.get("window").width * 0.95;
 
 const CategorieCard = ({ item, navigation }) => {
-	const dispatch = useDispatch();
 
 	const handlePress = () => {
-		dispatch(setProdFilteredByCategory(item.title));
-		navigation.navigate("Productos");
+		navigation.navigate("Productos", {item});
 	};
 
 	const setTitle = () => {

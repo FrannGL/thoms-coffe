@@ -1,15 +1,42 @@
-import { View, Text, FlatList, StyleSheet, Image } from "react-native";
+import { View, FlatList, StyleSheet, Image } from "react-native";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../Components/ProductCard.jsx";
 import url from "../../public/assets/home_background.jpg";
 import { theme } from "../utils/theme.js";
 import Header from "../Components/Header.jsx";
+import { useGetProductsQuery, useGetProductsByCategoryQuery } from "../app/services/shopServices.js";
 
-const Products = () => {
-	const categorieSelected = useSelector(state => state.shop.value.prodFilteredByCategory);
-	const products = useSelector(state => state.shop.value.products.products);
+const Products = ({ route }) => {
+	const category = route.params.item.title;
+	const { data, isLoading, error } = useGetProductsByCategoryQuery(category);
+	const { data: allData } = useGetProductsQuery();
+	const [products, setProducts] = useState([]);
+	const [allProducts, setAllProducts] = useState([]);
 
-	const dataToRender = categorieSelected.length > 0 ? categorieSelected : products;
+	useEffect(() => {
+		try {
+			if (!isLoading) {
+				const dataArray = Object.values(data);
+				setProducts(dataArray);
+			}
+		} catch {
+			console.log(error);
+		}
+	}, [data]);
+
+	useEffect(() => {
+		try {
+			if (allData) {
+				const allDataArray = Object.values(allData);
+				setAllProducts(allDataArray);
+			}
+		} catch {
+			console.log("Error fetching all products");
+		}
+	}, [allData]);
+
+	const dataToRender = products.length > 0 ? products : allProducts;
 
 	return (
 		<>
@@ -17,9 +44,7 @@ const Products = () => {
 				<View style={styles.backgroundContainer}>
 					<Image source={url} style={styles.backgroundImage} />
 				</View>
-				<Header
-					title={categorieSelected.length > 0 ? categorieSelected[0].category.toUpperCase() : "Todos los productos"}
-				/>
+				<Header title={products.length > 0 ? products[0].category.toUpperCase() : "Todos los productos"} />
 				<FlatList
 					data={dataToRender}
 					keyExtractor={item => item.id}
