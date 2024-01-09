@@ -11,8 +11,8 @@ import { Dimensions } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const Orders = ({ navigation }) => {
-	const order = useSelector(state => state.shop.value.orderDetail);
-	const orderTotal = useSelector(state => state.shop.value.orderTotal);
+	const order = useSelector(state => state.cart.value.items);
+	const orderTotal = useSelector(state => state.cart.value.total);
 	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
 
