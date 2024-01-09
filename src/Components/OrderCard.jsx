@@ -5,7 +5,7 @@ import Popup from "./Popup";
 import Toast from "react-native-toast-message";
 import QuantityControls from "./QuantityControls";
 import { useDispatch } from "react-redux";
-import { setOrderTotal, updateQuantity } from "../features/shop/shopSlice";
+import { setTotal, updateQuantity } from "../features/cart/cartSlice.js";
 
 const OrderCard = ({ item, onDelete }) => {
 	const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -22,12 +22,12 @@ const OrderCard = ({ item, onDelete }) => {
 
 	const increaseQuantity = () => {
 		dispatch(updateQuantity({ productId: item.id, quantity: 1 }));
-		dispatch(setOrderTotal());
+		dispatch(setTotal());
 	};
 
 	const decreaseQuantity = () => {
 		dispatch(updateQuantity({ productId: item.id, quantity: -1 }));
-		dispatch(setOrderTotal());
+		dispatch(setTotal());
 	};
 
 	const handleDeletePress = () => {

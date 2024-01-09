@@ -3,18 +3,21 @@ import OrderCard from "../Components/OrderCard";
 import url from "../../public/assets/home_background.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
-import { onDelete, setOrderTotal } from "../features/shop/shopSlice.js";
+import { removeItem, setTotal, clearItems } from "../features/cart/cartSlice.js";
 import { useState, useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { Dimensions } from "react-native";
+import { usePostOrdersMutation } from "../app/services/shopServices.js";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const Orders = ({ navigation }) => {
 	const order = useSelector(state => state.cart.value.items);
 	const orderTotal = useSelector(state => state.cart.value.total);
+	const orderDate = useSelector(state => state.cart.value.updated_at);
 	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
+	const [postOrdersMutation] = usePostOrdersMutation();
 
 	const showToast = () => {
 		Toast.show({
@@ -25,22 +28,31 @@ const Orders = ({ navigation }) => {
 		});
 	};
 
+	const finalOrder = {
+		items: order,
+		total: orderTotal,
+		date: orderDate,
+	};
+
 	const handleSend = () => {
 		setLoading(true);
 		setTimeout(() => {
 			setLoading(false);
+			postOrdersMutation(finalOrder);
 			showToast();
+			dispatch(clearItems());
+			navigation.navigate("Inicio");
 		}, 5000);
 	};
 
 	useEffect(() => {
-		dispatch(setOrderTotal());
+		dispatch(setTotal());
 	}, [order, dispatch]);
 
 	const prodsInCart = order.length > 0 ? true : false;
 
 	const handleDelete = item => {
-		dispatch(onDelete(item));
+		dispatch(removeItem(item));
 	};
 
 	return (
