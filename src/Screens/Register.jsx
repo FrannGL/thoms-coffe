@@ -7,6 +7,7 @@ import { useSignupMutation } from "../app/services/authServices.js";
 import { setUser } from "../features/authSlice/authSlice.js";
 import { useDispatch } from "react-redux";
 import { signUpSchema } from "../validations/signupSchema.js";
+import Toast from "react-native-toast-message";
 
 const Register = ({ navigation }) => {
 	const [email, setEmail] = useState("");
@@ -16,16 +17,26 @@ const Register = ({ navigation }) => {
 	const [passwordError, setPasswordError] = useState("");
 	const [confirmPasswordError, setConfirmPasswordError] = useState("");
 	const dispatch = useDispatch();
-	const [triggerSignup, { isError, error, isSuccess, data }] = useSignupMutation();
+	const [triggerSignup, { isError, isSuccess, data }] = useSignupMutation();
 
 	useEffect(() => {
 		if (isSuccess) {
 			dispatch(setUser(data));
+			showToast("success", "¡Bienvenido! 😎", "Ahora puedes visitar nuestras Tienda 🍰 🥞");
 		}
 		if (isError) {
-			console.log(error);
+			showToast("error", "Ya existe un usuario con el email ingresado 📵", "Por favor intenta nuevamente 😑");
 		}
 	}, [data, isError, isSuccess]);
+
+	const showToast = (type, text1, text2) => {
+		Toast.show({
+			type,
+			text1,
+			text2,
+			visibilityTime: 5000,
+		});
+	};
 
 	const handleRegister = async () => {
 		try {

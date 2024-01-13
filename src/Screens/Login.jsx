@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 import InputForm from "../Components/InputForm";
 import url from "../../public/assets/home_background.jpg";
 import logo from "../../public/assets/logo.png";
 import { useLoginMutation } from "../app/services/authServices.js";
 import { setUser } from "../features/authSlice/authSlice.js";
 import { useDispatch } from "react-redux";
+import Toast from "react-native-toast-message";
 
 const Login = ({ navigation }) => {
 	const [email, setEmail] = useState("");
@@ -16,9 +17,10 @@ const Login = ({ navigation }) => {
 	useEffect(() => {
 		if (isSuccess) {
 			dispatch(setUser(data));
+			showToast("success", "¡Bienvenido! 😎", "Ahora puedes visitar nuestras Tienda 🍰 🥞");
 		}
 		if (isError) {
-			console.log(error);
+			showToast("error", "La contraseña ingresada es incorrecta 📵", "Por favor intenta nuevamente 😑");
 		}
 	}, [data, isError, isSuccess]);
 
@@ -32,6 +34,15 @@ const Login = ({ navigation }) => {
 		} catch (error) {
 			console.error("Error de la API:", error);
 		}
+	};
+
+	const showToast = (type, text1, text2) => {
+		Toast.show({
+			type,
+			text1,
+			text2,
+			visibilityTime: 5000,
+		});
 	};
 
 	return (

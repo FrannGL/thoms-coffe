@@ -41,7 +41,7 @@ const Orders = ({ navigation }) => {
 			postOrdersMutation(finalOrder);
 			showToast();
 			dispatch(clearItems());
-			navigation.navigate("Inicio");
+			navigation.navigate("Categorias");
 		}, 5000);
 	};
 

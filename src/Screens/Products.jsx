@@ -1,6 +1,6 @@
 import { View, FlatList, StyleSheet, Image } from "react-native";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import allProds from "../Data/products.json";
 import ProductCard from "../Components/ProductCard.jsx";
 import url from "../../public/assets/home_background.jpg";
 import { theme } from "../utils/theme.js";
@@ -8,11 +8,11 @@ import Header from "../Components/Header.jsx";
 import { useGetProductsQuery, useGetProductsByCategoryQuery } from "../app/services/shopServices.js";
 
 const Products = ({ route }) => {
-	const category = route.params.item.title;
+	const category = route.params?.item?.title;
 	const { data, isLoading, error } = useGetProductsByCategoryQuery(category);
 	const { data: allData } = useGetProductsQuery();
 	const [products, setProducts] = useState([]);
-	const [allProducts, setAllProducts] = useState([]);
+	const [allProducts, setAllProducts] = useState(allProds);
 
 	useEffect(() => {
 		try {
