@@ -4,65 +4,69 @@ import InputForm from "../Components/InputForm";
 import url from "../../public/assets/home_background.jpg";
 import logo from "../../public/assets/logo.png";
 import { useSignupMutation } from "../app/services/authServices.js";
+import { setUser } from "../features/authSlice/authSlice.js";
+import { useDispatch } from "react-redux";
+import { signUpSchema } from "../validations/signupSchema.js";
 
 const Register = ({ navigation }) => {
 	const [email, setEmail] = useState("");
-	const [isValidEmail, setIsValidEmail] = useState(true);
 	const [password, setPassword] = useState("");
-	const [isValidPassword, setIsValidPassword] = useState(true);
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [isValidConfirmPassword, setIsValidConfirmPassword] = useState(true);
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+	const [confirmPasswordError, setConfirmPasswordError] = useState("");
+	const dispatch = useDispatch();
 	const [triggerSignup, { isError, error, isSuccess, data }] = useSignupMutation();
 
 	useEffect(() => {
 		if (isSuccess) {
-			console.log(data);
+			dispatch(setUser(data));
 		}
 		if (isError) {
 			console.log(error);
 		}
 	}, [data, isError, isSuccess]);
 
-	const validateEmail = () => {
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		const isValid = emailRegex.test(email.trim());
-		setIsValidEmail(isValid && email.trim() !== "");
-		return isValid && email.trim() !== "";
-	};
-
-	const validatePassword = password => {
-		const isValid = password.length >= 6;
-		setIsValidPassword(isValid);
-		return isValid;
-	};
-
 	const handleRegister = async () => {
-		// Validación de correo electrónico
-		if (!validateEmail()) {
-			return;
-		}
-
-		// Validación de contraseña
-		if (!validatePassword(password)) {
-			return;
-		}
-
 		try {
-			const response = await triggerSignup(email, password);
+			signUpSchema.validateSync({ email, password, confirmPassword });
+			const response = await triggerSignup({ email, password });
+
 			if (response.error) {
 				console.error("Error en la respuesta:", response.error);
+				clearErrors();
+
+				const errorMap = {
+					email: setEmailError,
+					password: setPasswordError,
+					confirmPassword: setConfirmPasswordError,
+				};
+
+				const setError = errorMap[response.error.path];
+				setError(response.error.message);
+
 				return;
 			}
 		} catch (error) {
-			console.error("Error de la API:", error);
+			console.log("Error en el input", error.path);
+			console.log(error.message);
+			clearErrors();
+
+			const errorMap = {
+				email: setEmailError,
+				password: setPasswordError,
+				confirmPassword: setConfirmPasswordError,
+			};
+
+			const setError = errorMap[error.path];
+			setError(error.message);
 		}
-		clearErrors();
 	};
 
 	const clearErrors = () => {
-		setIsValidEmail(true);
-		setIsValidPassword(true);
-		setIsValidConfirmPassword(true);
+		setEmailError("");
+		setPasswordError("");
+		setConfirmPasswordError("");
 	};
 
 	return (
@@ -77,8 +81,7 @@ const Register = ({ navigation }) => {
 						label='Correo electrónico'
 						value={email}
 						onChangeText={text => setEmail(text)}
-						isValid={isValidEmail}
-						error={isValidEmail ? "" : "Ingrese un correo electrónico válido"}
+						error={emailError}
 						isSecure={false}
 						enableValidation={true}
 					/>
@@ -86,8 +89,7 @@ const Register = ({ navigation }) => {
 						label='Contraseña'
 						value={password}
 						onChangeText={text => setPassword(text)}
-						isValid={isValidPassword}
-						error={isValidPassword ? "" : "La contraseña debe tener al menos 6 caracteres"}
+						error={passwordError}
 						isSecure={true}
 						enableValidation={true}
 					/>
@@ -95,8 +97,7 @@ const Register = ({ navigation }) => {
 						label='Confirmar Contraseña'
 						value={confirmPassword}
 						onChangeText={text => setConfirmPassword(text)}
-						isValid={isValidConfirmPassword}
-						error={isValidConfirmPassword ? "" : "Las contraseñas no coinciden"}
+						error={confirmPasswordError}
 						isSecure={true}
 						enableValidation={true}
 					/>

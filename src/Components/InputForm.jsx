@@ -1,17 +1,17 @@
 import { View, TextInput, Text, StyleSheet } from "react-native";
 
-const InputForm = ({ label, value, onChangeText, isValid, error, isSecure, enableValidation = true }) => {
+const InputForm = ({ label, value, onChangeText, error, isSecure, enableValidation = true }) => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.label}>{label}</Text>
 			<TextInput
-				style={[styles.input, enableValidation && !isValid && styles.inputError]}
+				style={[styles.input, enableValidation && error && styles.inputError]}
 				value={value}
 				onChangeText={onChangeText}
 				secureTextEntry={isSecure}
 				placeholderTextColor='white'
 			/>
-			{enableValidation && !isValid && <Text style={styles.errorText}>{error}</Text>}
+			{enableValidation && error && <Text style={styles.errorText}>{error}</Text>}
 		</View>
 	);
 };

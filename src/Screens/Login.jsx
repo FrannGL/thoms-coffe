@@ -4,15 +4,18 @@ import InputForm from "../Components/InputForm";
 import url from "../../public/assets/home_background.jpg";
 import logo from "../../public/assets/logo.png";
 import { useLoginMutation } from "../app/services/authServices.js";
+import { setUser } from "../features/authSlice/authSlice.js";
+import { useDispatch } from "react-redux";
 
 const Login = ({ navigation }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [triggerLogin, { isError, error, isSuccess, data }] = useLoginMutation();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (isSuccess) {
-			console.log(data);
+			dispatch(setUser(data));
 		}
 		if (isError) {
 			console.log(error);
@@ -21,7 +24,7 @@ const Login = ({ navigation }) => {
 
 	const handleLogin = async () => {
 		try {
-			const response = await triggerLogin({ user: { email, password } });
+			const response = await triggerLogin({ email, password });
 			if (response.error) {
 				console.error("Error en la respuesta:", response.error);
 				return;
@@ -54,7 +57,7 @@ const Login = ({ navigation }) => {
 						enableValidation={false}
 					/>
 					<TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-						<Text style={styles.loginButtonText}>Registrarse</Text>
+						<Text style={styles.loginButtonText}>Iniciar Sesion</Text>
 					</TouchableOpacity>
 					<View style={styles.registerContainer}>
 						<Text style={styles.registerText}>¿No tienes una cuenta?</Text>
