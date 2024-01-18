@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Image, Text, TouchableOpacity, Alert } from "react-native";
+import LocationSelector from "./LocationSelector.jsx";
 import profileDefault from "../../public/assets/default_profile.webp";
 import url from "../../public/assets/home_background.jpg";
 import { useState, useEffect } from "react";
@@ -7,11 +8,13 @@ import * as ImagePicker from "expo-image-picker";
 import { usePostProfileMutation } from "../app/services/shopServices.js";
 import { useGetProfileQuery } from "../app/services/shopServices.js";
 import { useSelector } from "react-redux";
+import Modal from "../Components/Modal.jsx";
 import Toast from "react-native-toast-message";
 
 const Profile = () => {
 	const [newProfileImage, setNewProfileImage] = useState("");
 	const [showConfirmButton, setShowConfirmButton] = useState(true);
+	const [modal, setModal] = useState(false);
 	const [triggerProfileImage, { isError, error, isSuccess }] = usePostProfileMutation();
 	const localId = useSelector(state => state.auth.value.localId);
 	const user = useSelector(state => state.auth.value);
@@ -59,6 +62,10 @@ const Profile = () => {
 		});
 	};
 
+	const showModal = () => {
+		setModal(!modal);
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.backgroundContainer}>
@@ -73,6 +80,10 @@ const Profile = () => {
 					<View style={styles.detailsContainer}>
 						<Text style={styles.emailText}>{user.email}</Text>
 						<Text style={styles.lastConnectionText}>Última Conexión: Hoy</Text>
+						<Text style={styles.lastConnectionText}>Ubicación: {""}</Text>
+						<TouchableOpacity onPress={showModal}>
+							<Text style={styles.locationText}>Actualizar ubicación</Text>
+						</TouchableOpacity>
 					</View>
 				</View>
 				<TouchableOpacity onPress={handleChoosePhoto}>
@@ -87,7 +98,9 @@ const Profile = () => {
 						</View>
 					</TouchableOpacity>
 				)}
+				{modal && <Modal onClose={() => setModal(false)} />}
 			</View>
+			{/* <LocationSelector /> */}
 		</View>
 	);
 };
@@ -153,6 +166,11 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: "bold",
 		textAlign: "center",
+	},
+	locationText: {
+		fontSize: 14,
+		color: "#4D61DE",
+		textDecorationLine: "underline",
 	},
 });
 

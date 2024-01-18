@@ -7,16 +7,24 @@ import { useLoginMutation } from "../app/services/authServices.js";
 import { setUser } from "../features/authSlice/authSlice.js";
 import { useDispatch } from "react-redux";
 import Toast from "react-native-toast-message";
+import { insertSession } from "../db/index.js";
 
 const Login = ({ navigation }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [triggerLogin, { isError, error, isSuccess, data }] = useLoginMutation();
+	const [triggerLogin, { isError, isSuccess, data }] = useLoginMutation();
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (isSuccess) {
 			dispatch(setUser(data));
+			insertSession(data)
+				.then(result => {
+					console.log(result);
+				})
+				.catch(e => {
+					console.log(e);
+				});
 			showToast("success", "¡Bienvenido! 😎", "Ahora puedes visitar nuestras Tienda 🍰 🥞");
 		}
 		if (isError) {
