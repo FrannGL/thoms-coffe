@@ -11,12 +11,13 @@ import { useSelector } from "react-redux";
 import Modal from "../Components/Modal.jsx";
 import Toast from "react-native-toast-message";
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
 	const [newProfileImage, setNewProfileImage] = useState("");
 	const [showConfirmButton, setShowConfirmButton] = useState(true);
 	const [modal, setModal] = useState(false);
 	const [triggerProfileImage, { isError, error, isSuccess }] = usePostProfileMutation();
 	const localId = useSelector(state => state.auth.value.localId);
+	const address = useSelector(state => state.auth.value.address);
 	const user = useSelector(state => state.auth.value);
 	const { data } = useGetProfileQuery(localId);
 
@@ -80,15 +81,17 @@ const Profile = () => {
 					<View style={styles.detailsContainer}>
 						<Text style={styles.emailText}>{user.email}</Text>
 						<Text style={styles.lastConnectionText}>Última Conexión: Hoy</Text>
-						<Text style={styles.lastConnectionText}>Ubicación: {""}</Text>
-						<TouchableOpacity onPress={showModal}>
-							<Text style={styles.locationText}>Actualizar ubicación</Text>
-						</TouchableOpacity>
+						<Text style={styles.lastLocationText}>Ubicación: {address}</Text>
 					</View>
 				</View>
 				<TouchableOpacity onPress={handleChoosePhoto}>
 					<View style={styles.uploadButton}>
 						<Text style={styles.uploadButtonText}>Subir Nueva Foto</Text>
+					</View>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={showModal}>
+					<View style={styles.uploadButton}>
+						<Text style={styles.uploadButtonText}>Actualizar ubicación</Text>
 					</View>
 				</TouchableOpacity>
 				{showConfirmButton && newProfileImage && (
@@ -98,9 +101,8 @@ const Profile = () => {
 						</View>
 					</TouchableOpacity>
 				)}
-				{modal && <Modal onClose={() => setModal(false)} />}
+				{modal && <Modal onClose={() => setModal(false)} navigation={navigation} />}
 			</View>
-			{/* <LocationSelector /> */}
 		</View>
 	);
 };
@@ -148,6 +150,12 @@ const styles = StyleSheet.create({
 	lastConnectionText: {
 		fontSize: 14,
 		color: "#fff",
+		marginVertical: 5,
+	},
+	lastLocationText: {
+		fontSize: 14,
+		color: "#fff",
+		marginVertical: 5,
 	},
 	uploadButton: {
 		backgroundColor: "#3498db",

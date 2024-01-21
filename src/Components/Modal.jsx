@@ -4,12 +4,12 @@ import LocationSelector from "../Screens/LocationSelector";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
-const Modal = ({ onClose }) => {
+const Modal = ({ onClose, navigation }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.background}></View>
 			<View style={styles.content}>
-				<LocationSelector />
+				<LocationSelector navigation={navigation} />
 				<View style={styles.close}>
 					<TouchableOpacity onPress={onClose}>
 						<Text style={styles.text}>x</Text>

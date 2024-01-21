@@ -33,10 +33,10 @@ export const shopApi = createApi({
 			invalidatesTags: ["image"],
 		}),
 		postUserLocation: builder.mutation({
-			query: ({ localId, location }) => ({
+			query: ({ localId, locationFormatted }) => ({
 				url: `userLocation/${localId}.json`,
 				method: "PUT",
-				body: location,
+				body: locationFormatted,
 			}),
 			invalidatesTags: ["location"],
 		}),

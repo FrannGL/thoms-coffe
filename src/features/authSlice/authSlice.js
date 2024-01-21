@@ -5,6 +5,7 @@ const initialState = {
 		email: null,
 		idToken: null,
 		localId: null,
+		address: null,
 	},
 };
 
@@ -22,9 +23,15 @@ export const authSlice = createSlice({
 			state.value.idToken = null;
 			state.value.localId = null;
 		},
+		setPlainAddress: (state, action) => {
+			state.value = {
+				...state.value,
+				address: action.payload,
+			};
+		},
 	},
 });
 
-export const { setUser, clearUser } = authSlice.actions;
+export const { setUser, clearUser, setPlainAddress } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -6,6 +6,8 @@ import MapPreview from "../Components/MapPreview";
 import { googleApi } from "../firebase/googleApi";
 import { usePostUserLocationMutation } from "../app/services/shopServices";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from "react-native-toast-message";
+import { setPlainAddress } from "../features/authSlice/authSlice";
 
 const LocationSelector = ({ navigation }) => {
 	const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
@@ -20,12 +22,9 @@ const LocationSelector = ({ navigation }) => {
 				address,
 				...location,
 			};
-			const data = await triggerPostUserLocation({
-				localId,
-				locationFormatted,
-			});
-			console.log(data);
-			navigation.navigate("Perfil");
+
+			const data = await triggerPostUserLocation({ localId, locationFormatted });
+			dispatch(setPlainAddress(data.data.address));
 		} catch (e) {
 			console.log(e);
 		}
@@ -33,12 +32,14 @@ const LocationSelector = ({ navigation }) => {
 
 	useEffect(() => {
 		if (isSuccess) {
-			console.log(data);
+			showToast("success", "Ubicación actualizada con exito! 😎", "Gracias! 🍰 🥞");
 		}
-		if (error) {
-			console.log(error);
+
+		if (isError) {
+			showToast("error", "La ubicación no se pudo actualizar 📵", "Por favor intenta nuevamente 😑");
+			console.error("Error al actualizar la imagen de perfil", error);
 		}
-	}, [data, isSuccess, isError, error]);
+	}, [isSuccess, isError, error]);
 
 	useEffect(() => {
 		(async () => {
@@ -53,18 +54,29 @@ const LocationSelector = ({ navigation }) => {
 	});
 
 	useEffect(() => {
-		(async () => {
-			try {
-				const response = await fetch(
-					`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${googleApi.mapStatic}`
-				);
-				const data = await response.json();
-				console.log(data);
-			} catch (e) {
-				console.log(e);
-			}
-		})();
+		if (location.latitude && location.longitude) {
+			(async () => {
+				try {
+					const response = await fetch(
+						`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${googleApi.mapStatic}`
+					);
+					const data = await response.json();
+					setAddress(data.results[0].formatted_address);
+				} catch (e) {
+					console.log(e);
+				}
+			})();
+		}
 	}, [location]);
+
+	const showToast = (type, text1, text2) => {
+		Toast.show({
+			type,
+			text1,
+			text2,
+			visibilityTime: 5000,
+		});
+	};
 
 	return (
 		<View style={styles.container}>
@@ -72,9 +84,10 @@ const LocationSelector = ({ navigation }) => {
 				<Image source={url} style={styles.backgroundImage} />
 			</View>
 			<View style={styles.content}>
-				<Text style={styles.buttonText}>Dirección: {location.latitude && location.longitude}</Text>
+				<Text style={styles.buttonText}>Dirección Actual:</Text>
+				<Text style={styles.text}>{address}</Text>
 				<MapPreview latitud={location.latitude} longitud={location.longitude} />
-				<TouchableOpacity style={styles.btn}>
+				<TouchableOpacity style={styles.btn} onPress={onConfirmAddress}>
 					<View style={styles.uploadButton}>
 						<Text style={styles.uploadButtonText}>Confirmar Ubicacion</Text>
 					</View>
@@ -135,6 +148,12 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		textAlign: "center",
 		marginVertical: 20,
+	},
+	text: {
+		color: "white",
+		textAlign: "center",
+		fontSize: 18,
+		marginBottom: 10,
 	},
 	uploadButton: {
 		backgroundColor: "#3498db",
