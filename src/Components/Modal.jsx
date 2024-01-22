@@ -1,15 +1,15 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Dimensions } from "react-native";
-import LocationSelector from "../Screens/LocationSelector";
+import LocationSelector from "./LocationSelector";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
-const Modal = ({ onClose, navigation }) => {
+const Modal = ({ onClose }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.background}></View>
 			<View style={styles.content}>
-				<LocationSelector navigation={navigation} />
+				<LocationSelector onClose={onClose} />
 				<View style={styles.close}>
 					<TouchableOpacity onPress={onClose}>
 						<Text style={styles.text}>x</Text>

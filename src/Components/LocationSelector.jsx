@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { View, Image, StyleSheet, TouchableOpacity, Text } from "react-native";
 import url from "../../public/assets/home_background.jpg";
 import * as Location from "expo-location";
-import MapPreview from "../Components/MapPreview";
+import MapPreview from "./MapPreview";
 import { googleApi } from "../firebase/googleApi";
 import { usePostUserLocationMutation } from "../app/services/shopServices";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "react-native-toast-message";
 import { setPlainAddress } from "../features/authSlice/authSlice";
 
-const LocationSelector = ({ navigation }) => {
+const LocationSelector = ({ onClose }) => {
 	const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
 	const [address, setAddress] = useState("");
 	const [triggerPostUserLocation, { data, isSuccess, error, isError }] = usePostUserLocationMutation();
@@ -25,6 +25,7 @@ const LocationSelector = ({ navigation }) => {
 
 			const data = await triggerPostUserLocation({ localId, locationFormatted });
 			dispatch(setPlainAddress(data.data.address));
+			onClose();
 		} catch (e) {
 			console.log(e);
 		}

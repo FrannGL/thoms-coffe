@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Image, Text, TouchableOpacity, Alert } from "react-native";
-import LocationSelector from "./LocationSelector.jsx";
+import LocationSelector from "../Components/LocationSelector.jsx";
 import profileDefault from "../../public/assets/default_profile.webp";
 import url from "../../public/assets/home_background.jpg";
 import { useState, useEffect } from "react";
@@ -11,9 +11,9 @@ import { useSelector } from "react-redux";
 import Modal from "../Components/Modal.jsx";
 import Toast from "react-native-toast-message";
 
-const Profile = ({ navigation }) => {
+const Profile = () => {
 	const [newProfileImage, setNewProfileImage] = useState("");
-	const [showConfirmButton, setShowConfirmButton] = useState(true);
+	const [showConfirmButton, setShowConfirmButton] = useState(false);
 	const [modal, setModal] = useState(false);
 	const [triggerProfileImage, { isError, error, isSuccess }] = usePostProfileMutation();
 	const localId = useSelector(state => state.auth.value.localId);
@@ -46,6 +46,7 @@ const Profile = ({ navigation }) => {
 			});
 			if (!result.canceled) {
 				setNewProfileImage("data:image/jpeg;base64," + result.assets[0].base64);
+				setShowConfirmButton(true);
 			}
 		}
 	};
@@ -75,7 +76,7 @@ const Profile = ({ navigation }) => {
 			<View style={styles.contentContainer}>
 				<View style={styles.profileInfoContainer}>
 					<Image
-						source={data ? { uri: data.image } : newProfileImage ? { uri: newProfileImage } : profileDefault}
+						source={newProfileImage ? { uri: newProfileImage } : data ? { uri: data.image } : profileDefault}
 						style={styles.profileImage}
 					/>
 					<View style={styles.detailsContainer}>
@@ -101,7 +102,7 @@ const Profile = ({ navigation }) => {
 						</View>
 					</TouchableOpacity>
 				)}
-				{modal && <Modal onClose={() => setModal(false)} navigation={navigation} />}
+				{modal && <Modal onClose={() => setModal(false)} />}
 			</View>
 		</View>
 	);
