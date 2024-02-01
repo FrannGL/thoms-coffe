@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const shopApi = createApi({
 	reducerPath: "shopApi",
 	baseQuery: fetchBaseQuery({ baseUrl: "https://thom-s-coffe-default-rtdb.firebaseio.com/" }),
-	tagTypes: ["image", "location"],
+	tagTypes: ["image", "location", "orders"],
 	endpoints: builder => ({
 		getProducts: builder.query({
 			query: () => "products.json",
@@ -23,6 +23,11 @@ export const shopApi = createApi({
 				method: "POST",
 				body: order,
 			}),
+			invalidatesTags: ["orders"],
+		}),
+		getOrders: builder.query({
+			query: () => "orders.json",
+			providesTags: ["orders"],
 		}),
 		postProfile: builder.mutation({
 			query: ({ localId, image }) => ({
@@ -58,6 +63,7 @@ export const {
 	useGetCategoriesQuery,
 	useGetUserLocationQuery,
 	usePostOrdersMutation,
+	useGetOrdersQuery,
 	usePostProfileMutation,
 	usePostUserLocationMutation,
 	useGetProfileQuery,

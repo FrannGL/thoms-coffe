@@ -178,6 +178,9 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
+		backgroundColor: "rgba(0, 0, 0, 0.6)",
+		borderRadius: 8,
+		padding: 10,
 	},
 	registerText: {
 		color: "white",

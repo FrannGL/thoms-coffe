@@ -1,37 +1,27 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../Screens/Login.jsx";
 import Register from "../Screens/Register.jsx";
-import { MaterialIcons } from "@expo/vector-icons";
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const AuthStack = () => {
 	return (
-		<Tab.Navigator
-			initialRouteName='Login'
-			screenOptions={{
-				activeTintColor: "blue",
-				inactiveTintColor: "gray",
-				labelStyle: {
-					fontSize: 12,
-				},
-			}}
-		>
-			<Tab.Screen
+		<Stack.Navigator>
+			<Stack.Screen
 				name='Login'
 				component={Login}
 				options={{
-					tabBarIcon: ({ color, size }) => <MaterialIcons name='login' size={size} color={color} />,
+					headerShown: false,
 				}}
 			/>
-			<Tab.Screen
+			<Stack.Screen
 				name='Register'
 				component={Register}
 				options={{
-					tabBarIcon: ({ color, size }) => <MaterialIcons name='supervised-user-circle' size={size} color={color} />,
+					headerShown: false,
 				}}
 			/>
-		</Tab.Navigator>
+		</Stack.Navigator>
 	);
 };
 

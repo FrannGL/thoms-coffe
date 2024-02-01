@@ -15,6 +15,7 @@ const Orders = ({ navigation }) => {
 	const order = useSelector(state => state.cart.value.items);
 	const orderTotal = useSelector(state => state.cart.value.total);
 	const orderDate = useSelector(state => state.cart.value.updated_at);
+	const localId = useSelector(state => state.auth.value.localId);
 	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
 	const [postOrdersMutation] = usePostOrdersMutation();
@@ -32,6 +33,7 @@ const Orders = ({ navigation }) => {
 		items: order,
 		total: orderTotal,
 		date: orderDate,
+		user: localId,
 	};
 
 	const handleSend = () => {
@@ -41,7 +43,7 @@ const Orders = ({ navigation }) => {
 			postOrdersMutation(finalOrder);
 			showToast();
 			dispatch(clearItems());
-			navigation.navigate("Categorias");
+			navigation.navigate("Mis Ordenes");
 		}, 5000);
 	};
 

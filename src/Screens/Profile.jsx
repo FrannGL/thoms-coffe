@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Image, Text, TouchableOpacity, Alert } from "react-native";
-import LocationSelector from "../Components/LocationSelector.jsx";
 import profileDefault from "../../public/assets/default_profile.webp";
 import url from "../../public/assets/home_background.jpg";
 import { useState, useEffect } from "react";
