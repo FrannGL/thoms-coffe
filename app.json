@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "first-project",
-    "slug": "first-project",
+    "slug": "thoms-coffe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,8 +29,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "4871cad1-9b9a-4ea3-8862-2fd1970e833f"
+        "projectId": "f0d976d1-e8cd-4bcd-be18-9aaf2b926baa"
       }
-    }
+    },
+    "owner": "francogl"
   }
 }
